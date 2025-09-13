@@ -31,7 +31,7 @@
 # the build configuration options are initialized.                                 #
 ####################################################################################
 
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.5)
 
 project ("rttr" LANGUAGES CXX)
 
@@ -60,6 +60,7 @@ option(BUILD_PACKAGE "Enable this to build the installer" ON)
 option(USE_PCH "Use precompiled header files for compilation" ON)
 option(CUSTOM_DOXYGEN_STYLE "Enable this option to use a custom doxygen style for HTML documentation; Otherwise the default will be used" ON)
 option(BUILD_WEBSITE_DOCU "Enable this option to create the special docu for the website" OFF)
+option(WARNINGS_AS_ERROR "Enable this option to treat warnings as error" OFF)
 
 # one precompiled headers cannot be used for multiple ninja targets
 # thats why we have to disable this option, when BUILD_STATIC or
