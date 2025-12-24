@@ -53,14 +53,17 @@ option(BUILD_STATIC "Build RTTR as static library" OFF)
 option(BUILD_WITH_STATIC_RUNTIME_LIBS "Link against the static runtime libraries" OFF)
 option(BUILD_WITH_RTTI "Enable build with C++ runtime type information for compilation" ON)
 option(BUILD_BENCHMARKS "Enable this to build the benchmarks" OFF)
-option(BUILD_EXAMPLES "Enable this to build the examples" On)
-option(BUILD_DOCUMENTATION "Enable this to build the documentation" ON)
-option(BUILD_INSTALLER "Enable this to build the installer" ON)
-option(BUILD_PACKAGE "Enable this to build the installer" ON)
-option(USE_PCH "Use precompiled header files for compilation" ON)
+option(BUILD_EXAMPLES "Enable this to build the examples" ON)
+option(BUILD_DOCUMENTATION "Enable this to build the documentation" OFF)
+option(BUILD_INSTALLER "Enable this to build the installer" OFF)
+option(BUILD_PACKAGE "Enable this to build the installer" OFF)
+option(USE_PCH "Use precompiled header files for compilation" OFF)
 option(CUSTOM_DOXYGEN_STYLE "Enable this option to use a custom doxygen style for HTML documentation; Otherwise the default will be used" ON)
 option(BUILD_WEBSITE_DOCU "Enable this option to create the special docu for the website" OFF)
 option(WARNINGS_AS_ERROR "Enable this option to treat warnings as error" OFF)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_definitions(-w) # Supress all warnigs.
 
 # one precompiled headers cannot be used for multiple ninja targets
 # thats why we have to disable this option, when BUILD_STATIC or

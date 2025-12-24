@@ -27,6 +27,10 @@
 
 #include "rttr/detail/registration/registration_state_saver.h"
 
+#include "rttr/method.h"
+#include "rttr/property.h"
+#include "rttr/type.h"
+
 namespace rttr
 {
 namespace detail

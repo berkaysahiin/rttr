@@ -31,8 +31,6 @@
 #include "rttr/type.h"
 #include "rttr/variant.h"
 
-#include <type_traits>
-
 namespace rttr
 {
 namespace detail

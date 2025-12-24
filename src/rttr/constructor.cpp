@@ -29,9 +29,6 @@
 #include "rttr/detail/constructor/constructor_wrapper_base.h"
 #include "rttr/argument.h"
 
-#include <utility>
-
-
 using namespace std;
 
 namespace rttr

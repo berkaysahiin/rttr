@@ -204,6 +204,11 @@ variant type::create(vector<argument> args) const
     return variant();
 }
 
+variant type::create() const
+{
+	return create({});
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 bool type::destroy(variant& obj) const RTTR_NOEXCEPT

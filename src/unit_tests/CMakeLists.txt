@@ -26,6 +26,7 @@
 ####################################################################################
 
 add_subdirectory(base_library)
+add_compile_definitions(CATCH_CONFIG_NO_POSIX_SIGNALS)
 
 set(HPP_FILES "")
 set(SRC_FILES "")
