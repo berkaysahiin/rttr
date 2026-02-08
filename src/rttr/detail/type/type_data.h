@@ -125,6 +125,9 @@ using visit_type_func      = void(*)(type_of_visit, visitor&, const type&);
 
 } // end namespace impl
 
+RTTR_API std::vector<metadata>* create_metadata_list();
+RTTR_API void destroy_metadata_list(std::vector<metadata>* ptr);
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 struct RTTR_LOCAL type_data
@@ -269,8 +272,9 @@ get_create_wrapper_func()
 template<typename T>
 RTTR_LOCAL RTTR_INLINE std::vector<metadata>& get_metadata_func_impl()
 {
-    static std::unique_ptr<std::vector<metadata>> obj = make_unique<std::vector<metadata>>();
-    return (*obj.get());
+    using metadata_list_ptr = std::unique_ptr<std::vector<metadata>, void(*)(std::vector<metadata>*)>;
+    static metadata_list_ptr obj(create_metadata_list(), &destroy_metadata_list);
+    return (*obj);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

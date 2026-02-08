@@ -73,6 +73,7 @@ struct class_data;
 
 class metadata;
 class registration_manager;
+RTTR_LOCAL registration_manager& get_registration_manager() RTTR_NOEXCEPT;
 
 /*!
  * This class contains all functions to register properties, methods etc.. for a specific type.

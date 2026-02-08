@@ -539,10 +539,27 @@ function(get_latest_supported_cxx CXX_STANDARD)
     if(${CMAKE_VERSION} VERSION_LESS "3.8.0") 
         set(CMAKE_CXX_STANDARD 20)
     else()
-        set(CMAKE_CXX_STANDARD 20)
-    endif()    
+        set(CMAKE_CXX_STANDARD 23)
+    endif()
 
     include(CheckCXXSourceCompiles)
+
+    check_cxx_source_compiles(" 
+                              constexpr int f()
+                              {
+                                  if consteval
+                                  {
+                                      return 23;
+                                  }
+                                  else
+                                  {
+                                      return 20;
+                                  }
+                              }
+
+                              int main() { return f(); }
+                              "
+                              HAS_CXX23_SUPPORT)
 
     check_cxx_source_compiles("
                               #include <type_traits>
@@ -601,10 +618,18 @@ function(get_latest_supported_cxx CXX_STANDARD)
 
     if (HAS_NO_EXCEPT_TYPE_SIGNATURE_SUPPORT AND HAS_STL_NO_EXCEPT_TYPE_SIGNATURE_SUPPORT AND
         HAS_PARTIAL_SPECIALIZATION_FOR_ARRAYS)
-        set(MAX_CXX_STD 20)
+        if (HAS_CXX23_SUPPORT)
+            set(MAX_CXX_STD 23)
+        else()
+            set(MAX_CXX_STD 20)
+        endif()
     else()
         if (HAS_CXX_CONSTEXPR)
-            set(MAX_CXX_STD 20)
+            if (HAS_CXX23_SUPPORT)
+                set(MAX_CXX_STD 23)
+            else()
+                set(MAX_CXX_STD 20)
+            endif()
         else()
             set(MAX_CXX_STD 20)
         endif()
@@ -612,4 +637,3 @@ function(get_latest_supported_cxx CXX_STANDARD)
     
     set(${CXX_STANDARD} ${MAX_CXX_STD} PARENT_SCOPE)
 endfunction()
-

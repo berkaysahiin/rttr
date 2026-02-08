@@ -33,6 +33,16 @@ namespace rttr
 namespace detail
 {
 
+RTTR_API std::vector<metadata>* create_metadata_list()
+{
+    return new std::vector<metadata>();
+}
+
+RTTR_API void destroy_metadata_list(std::vector<metadata>* ptr)
+{
+    delete ptr;
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 static type_data& get_invalid_type_data_impl() RTTR_NOEXCEPT
@@ -71,5 +81,3 @@ type_data* get_invalid_type_data() RTTR_NOEXCEPT
 
 } // end namespace detail
 } // end namespace rttr
-
-

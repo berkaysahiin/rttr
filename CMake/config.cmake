@@ -121,6 +121,12 @@ enable_rtti(BUILD_WITH_RTTI)
 get_latest_supported_cxx(CXX_STANDARD)
 set(MAX_CXX_STANDARD ${CXX_STANDARD})
 
+if (DEFINED CMAKE_CXX_STANDARD AND NOT "${CMAKE_CXX_STANDARD}" STREQUAL "")
+    if (CMAKE_CXX_STANDARD LESS MAX_CXX_STANDARD)
+        set(MAX_CXX_STANDARD ${CMAKE_CXX_STANDARD})
+    endif()
+endif()
+
 message(STATUS "using C++: ${MAX_CXX_STANDARD}")
 
 # RelWithDepInfo should have the same option like the Release build
